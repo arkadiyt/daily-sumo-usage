@@ -1,0 +1,20 @@
+{
+  "name": "__MSG_extensionName__",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "__MSG_extensionDescription__",
+  "content_scripts": [
+    {
+      "matches": ["https://service.sumologic.com/ui/"],
+      "js": ["js/jquery-1.10.2.min.js", "js/content.js"]
+    }
+  ],
+  "default_locale": "en",
+  "permissions": [
+    "webRequest",
+    "https://service.sumologic.com/*"
+  ],
+  "background": {
+    "scripts": ["js/background.js"]
+  }
+}

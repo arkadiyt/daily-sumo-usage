@@ -1,0 +1,8 @@
+{
+  "extensionName": {
+    "message": "Daily Sumo Usage"
+  },
+  "extensionDescription": {
+    "message": "List daily usage in Sumologic"
+  }
+}
