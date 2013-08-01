@@ -22,7 +22,6 @@
     }
 
     if (api_session) {
-      chrome.webRequest.onBeforeSendHeaders.removeListener(headerCallback);
       sendApiSession(api_session);
     }
   };
