@@ -5,7 +5,7 @@
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, api_session);
     });
-  }
+  };
 
   var filter = {
     urls: ["https://service.sumologic.com/json/v1/authentication/user"]
@@ -15,7 +15,7 @@
     var headers = details.requestHeaders;
     var api_session = null;
     for (var i = 0; i < headers.length; ++i) {
-      if (headers[i].name == 'ApiSession') {
+      if (headers[i].name === 'ApiSession') {
         api_session = headers[i].value;
         break;
       }

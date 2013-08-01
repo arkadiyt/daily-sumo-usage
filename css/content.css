@@ -1,0 +1,10 @@
+table.usage {
+  border-collapse: collapse;
+}
+
+table.usage,
+table.usage th,
+table.usage td {
+  border: 1px solid black;
+  padding: 5px;
+}
