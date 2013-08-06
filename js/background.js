@@ -11,7 +11,8 @@
     urls: ["https://service.sumologic.com/json/v1/authentication/user"]
   };
   var opt_extraInfoSpec = ["requestHeaders"];
-  var headerCallback = function(details) {
+
+  chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
     var headers = details.requestHeaders;
     var api_session = null;
     for (var i = 0; i < headers.length; ++i) {
@@ -24,7 +25,6 @@
     if (api_session) {
       sendApiSession(api_session);
     }
-  };
+  }, filter, opt_extraInfoSpec);
 
-  chrome.webRequest.onBeforeSendHeaders.addListener(headerCallback, filter, opt_extraInfoSpec);
 })();

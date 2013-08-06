@@ -1,7 +1,8 @@
 (function() {
   "use strict";
 
-  var displayUsages = function(usages) {
+  var displayUsages = function(billing_data) {
+    var usages = billing_data.billingUsages.usages[0].usages
     for (var i = 0; i < usages.length; ++i) {
       usages[i] = (usages[i] / 1024.0).toFixed(2);
     }
@@ -27,16 +28,11 @@
 
       clearInterval(interval);
 
-      // Get start of billing period
-      var billing_regex = /Your current billing period is: (.+) - (.+)/,
-          billing_period_text = $('#subscription-details-container ul').last().text(),
-          billing_start = billing_regex.exec(billing_period_text)[1],
-          date = new Date(billing_start);
-
       // Build table html
       var table = ['<div class="account-section-header">Daily Usage</div>',
         '<div class="account-section-container"><table class="usage">'];
       var axes = [];
+      var date = new Date(billing_data.subscriptionDetails.currentPeriodStart)
       for (var i = 0; i < usages.length; ++i) {
         var date_string = (date.getMonth() + 1) + '/' + date.getDate();
         axes.push(date.getDate());
@@ -66,8 +62,7 @@
   chrome.runtime.onMessage.addListener(function(api_session, sender, sendResponse) {
     $.ajax('/json/v1/account/subscriptionAndBillingUsages?periods=0', {
       complete: function(jqXHR, textStatus) {
-        var usages = jqXHR.responseJSON.billingUsages.usages[0].usages;
-        displayUsages(usages);
+        displayUsages(jqXHR.responseJSON);
       },
       headers: {
         'ApiSession': api_session
