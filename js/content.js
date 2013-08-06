@@ -7,7 +7,7 @@
     }
 
     var max = Math.max.apply(Math, usages);
-    
+
     var graph_data = {
       cht: 'lc',
       chxt: 'x,y',
@@ -15,9 +15,9 @@
       chd: 't:' + usages.join(','),
       chxl: '0:|',
       chxr: [1, 0, max].join(','),
-      chxs: [0, max].join(',')
+      chds: [0, max].join(',')
     };
-    
+
     // TODO find event that lets me remove setInterval
     var interval = setInterval(function() {
       var $container = $('.account-section-container');
